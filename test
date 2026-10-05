@@ -1,0 +1,66 @@
+class Node {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Tree {
+    constructor() {
+        this.root = null;
+    }
+
+    insertValue(data, currentNode = this.root) {
+        const newNode = new Node(data);
+
+        // 1. If tree is empty, set root and exit
+        if (!this.root) {
+            this.root = newNode;
+            return;
+        }
+
+        // 2. Smaller values go LEFT
+        if (data < currentNode.data) {
+            if (currentNode.left === null) {
+                currentNode.left = newNode;
+                return;
+            } else {
+                this.insertValue(data, currentNode.left);
+            }
+        }
+
+        // 3. Larger values go RIGHT
+        else if (data > currentNode.data) {
+            if (currentNode.right === null) {
+                currentNode.right = newNode;
+                return;
+            } else {
+                this.insertValue(data, currentNode.right);
+            }
+        }
+    }
+
+    inOrder(root){
+        if(!root){
+            this.inOrder(root.left);
+            console.log(root.data);
+            this.inOrder(root.right);
+            
+        }
+    }
+}
+
+
+const newTree = new Tree()
+
+newTree.insertValue(10)
+newTree.insertValue(50)
+newTree.insertValue(40)
+newTree.insertValue(20)
+newTree.insertValue(10)
+newTree.insertValue(30)
+newTree.insertValue(90)
+newTree.insertValue(100)
+
+newTree.inOrder(10)
