@@ -1,6 +1,6 @@
 function selectionSort(a) {
     for (let y = 0; y < a.length; y++) {
-        let currentSmall = y
+        let currentSmall = y 
         for (let i = 0+y; i < a.length; i++) {
             if (a[currentSmall] > a[i]) {
                 currentSmall = i

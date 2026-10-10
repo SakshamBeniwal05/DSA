@@ -54,4 +54,4 @@ newGraph.insertEdge(3, 4)
 
 newGraph.printGraph()
 
-newGraph.bfsTraversal(1)
+newGraph.bfsTraversal(4)
