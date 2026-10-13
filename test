@@ -1,66 +1,52 @@
-class Node {
-    constructor(data, left = null, right = null) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-}
-
-class Tree {
-    constructor() {
-        this.root = null;
-    }
-
-    insertValue(data, currentNode = this.root) {
-        const newNode = new Node(data);
-
-        // 1. If tree is empty, set root and exit
-        if (!this.root) {
-            this.root = newNode;
-            return;
-        }
-
-        // 2. Smaller values go LEFT
-        if (data < currentNode.data) {
-            if (currentNode.left === null) {
-                currentNode.left = newNode;
-                return;
-            } else {
-                this.insertValue(data, currentNode.left);
-            }
-        }
-
-        // 3. Larger values go RIGHT
-        else if (data > currentNode.data) {
-            if (currentNode.right === null) {
-                currentNode.right = newNode;
-                return;
-            } else {
-                this.insertValue(data, currentNode.right);
-            }
-        }
-    }
-
-    inOrder(root){
-        if(!root){
-            this.inOrder(root.left);
-            console.log(root.data);
-            this.inOrder(root.right);
+def mergeSort(arr,start,end):
+    if(start >= end):
+        return
+    m = (start + end) // 2
+    
+    print(f"{start} ---- {end}")
+    
             
-        }
-    }
-}
+    mergeSort(arr,start,m)
+    mergeSort(arr,m+1,end)
+
+    merge(arr,start,m,end)
+
+def merge(arr,start,mid,end):
+    s1 = mid - start + 1
+    s2 = end - mid
+
+    newS1 = [0] * s1
+    newS2 = [0] * s2
+
+    for x in range(s1):
+        newS1[x] = arr[start+x]
+    for y in range(s2):
+        newS2[y] = arr[mid+1+y]
+
+    i = j = 0
+    s = start
+
+    while(i < s1 and j < s2):
+        if (newS1[i] <= newS2[j]):
+            arr[s] = newS1[i]
+            i += 1
+        else:
+            arr[s] = newS2[j]
+            j += 1
+        s += 1
+
+    while i < s1:
+        arr[s] = newS1[i]
+        i += 1
+        s += 1
+
+    # Copy any remaining elements from newRight
+    while j < s2:
+        arr[s] = newS2[j]
+        j += 1
+        s += 1
 
 
-const newTree = new Tree()
-
-newTree.insertValue(10)
-newTree.insertValue(50)
-newTree.insertValue(40)
-newTree.insertValue(20)
-newTree.insertValue(10)
-newTree.insertValue(30)
-newTree.insertValue(90)
-newTree.insertValue(100)
-
-newTree.inOrder(10)
+arr = [5, 1, 4, 2, 8]
+mergeSort(arr,0, (len(arr) - 1))
+print(arr)
